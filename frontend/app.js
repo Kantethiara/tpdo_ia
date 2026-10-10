@@ -26,13 +26,22 @@ async function askQuestion() {
         //
         // {
         //     "question": question
-        // }
+        
+        const response = await fetch("http://127.0.0.1:800/api/ask", {
+            method: "POST",
+            headers: {
+                "content.type": "application/json"
+            },
 
-        const response = null;
+            // Convert the response to JSON
+
+            body: JSON.stringify({ question })
+        });
+        data = await response.json();
+        
 
 
-        // TODO 5:
-        // Convert the response to JSON
+
         // and display data.answer in answerBox.
 
         const data = null;
