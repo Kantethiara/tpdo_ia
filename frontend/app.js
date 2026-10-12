@@ -19,43 +19,31 @@ async function askQuestion() {
     statusBox.classList.remove("error");
 
     try {
-
-        // TODO 4:
-        // Send a POST request to /api/ask
-        // with JSON:
-        //
-        // {
-        //     "question": question
-        
         const response = await fetch("http://127.0.0.1:800/api/ask", {
             method: "POST",
             headers: {
-                "content.type": "application/json"
+                "Content-Type": "application/json"
             },
-
-            // Convert the response to JSON
-
             body: JSON.stringify({ question })
         });
-        data = await response.json();
-        
 
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
+        const data = await response.json();
 
-        // and display data.answer in answerBox.
+        // Display the answer in answerBox
+        answerBox.textContent = data.answer || "No answer received.";
 
-        const data = null;
-
-        answerBox.textContent = "TODO: display the answer";
-
-    } catch (error) {
-
+    } catch (error) 
+    {
         console.error(error);
         statusBox.textContent = "Request failed.";
         statusBox.classList.add("error");
 
-    } finally {
-
+    } finally 
+    {
         askButton.disabled = false;
     }
 }

@@ -82,6 +82,8 @@ def create_retriever():
 
     # TODO 1:
     # Create Ollama embeddings using:
+    
+        
     # model="nomic-embed-text"
 
     embeddings = None
